@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuck Norris Jokes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-image: url('https://www.w3schools.com/w3images/forest.jpg'); /* Example background image */
+            background-size: cover; /* Make the background image cover the entire page */
+            background-attachment: fixed; /* Keep the background fixed while scrolling */
+            color: #fff; /* Text color */
+        }
+
+        #jokePTag {
+            font-size: 1.5em;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background for text */
+            border-radius: 5px;
+        }
+
+        button {
+            font-size: 1em;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function getFoodJoke() {
+            fetch('https://api.chucknorris.io/jokes/random?category=food')
+                .then(response => response.json())
+                .then(json =>
+                    document.getElementById("jokePTag").innerHTML = json.value)
+             
+              .catch(error => console.log('Unable to reach URL: ' + error));
+              }
+        
+
+        function getCelebrityJoke() {
+            fetch('https://api.chucknorris.io/jokes/random?category=celebrity')
+                .then(response => response.json())
+                .then(json => document.getElementById("jokePTag").innerHTML = json.value)
+                .catch(error => console.log('Unable to reach URL: ' + error));
+        }
+        function getMoneyJoke() {
+            fetch('https://api.chucknorris.io/jokes/random?category=money')
+                .then(response => response.json())
+                .then(json => document.getElementById("jokePTag").innerHTML = json.value)
+                    .catch(error => console.log('Unable to reach URL: ' + error));
+        }
+        function getDevJoke() {
+            alert("Fecting a developer joke..");// Alert message
+            fetch('https://api.chucknorris.io/jokes/random?category=dev')
+                .then(response => response.json())
+                .then(json => document.getElementById("jokePTag").innerHTML = json.value)
+                .catch(error => console.log('Unable to reach URL: ' + error));
+        }
+    </script>
+</head>
+<body>
+    <p id="jokePTag">Requesting...</p>
+    <button onclick="getFoodJoke()">Food Joke</button>
+    <button onclick="getCelebrityJoke()">Celebrity Joke</button>
+    <button onclick="getMoneyJoke()">Money Joke</button>
+    <button onclick="getDevJoke()">dev Joke</button>
+</body>
+</html>
